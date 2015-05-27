@@ -1,0 +1,43 @@
+{% extends 'admin/admin.twig' %}
+{% block body %}
+<h1>Import from excel</h1>
+    <form class="form-inline" role="form" action="" method="POST" enctype="multipart/form-data">
+      <div class="form-group">
+        <label class="sr-only" for="exampleInputEmail2">Upload Excel File (*.xls, *.xlsx)</label>
+        <input type="file" class="form-control" id="uploadedFile" name="uploadedFile">
+      </div>
+      <button type="submit" class="btn btn-default" name="import">Import</button>
+    </form>
+    <br>
+    <ul class="list-inline">
+    <li><a href="/admin"><i class="glyphicon glyphicon-arrow-left"></i> Kembali</a></li>
+  </ul>
+  <hr>
+  {% if kesalahan %}
+    <div class="alert alert-danger">
+      <ul>
+      {% for item in kesalahan.kesalahan %}
+        <li>{{item}}</li>
+      {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+  {% if preview %}
+  <hr>
+  <h2>Preview file</h2>
+  <table class="table">
+  {% for row in preview %}
+    <tr>
+      {% for cell in row %}
+         <td>{{cell}}</td> 
+      {% endfor %}
+    </tr> 
+  {% endfor %}
+  </table>
+
+
+  {% endif %}
+  
+
+{% endblock %}

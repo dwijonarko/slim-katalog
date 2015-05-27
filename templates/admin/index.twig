@@ -1,0 +1,49 @@
+{% extends 'admin/admin.twig' %}
+{% block body %}
+<div class="row">
+  {{dump(nama)}}
+  <h2>Data Buku</h2>
+  <table class="table" id="datatable">
+    <thead>
+    <tr>
+      <th>Kode</th>
+      <th>Judul</th>
+      <th>Penulis</th>
+      <th>Penerbit</th>
+      <th>Tahun</th>
+      <th>Jumlah</th>
+      <th>Kategori</th>
+      <th>Edit</th>
+      <th>Hapus</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in buku %}
+    <tr>
+      <td>{{item.kode}}</td>
+      <td>{{item.judul}}</td>
+      <td>{{item.penulis}}</td>
+      <td>{{item.penerbit}}</td>
+      <td>{{item.tahun}}</td>
+      <td>{{item.jumlah}}</td>
+      <td>{{item.kategori}}</td>
+      <td><a href="edit/{{item.kode}}" class="label label-warning">Edit</a></td>
+      <td><a href="delete/{{item.kode}}" class="label label-danger">Delete</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+<ul class="list-inline">
+  <li><a href="#" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-edit"></i> Tambah Data</a></li>
+  <li><a href="/import" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-open"></i> Import Data</a></li>
+</ul>
+</div>
+{% endblock %}
+{% block javascript %}
+<script>
+  $(document).ready( function () {
+    $('#datatable').DataTable();
+} );
+</script>
+{% endblock %}
